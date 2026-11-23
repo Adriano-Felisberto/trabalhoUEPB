@@ -1,20 +1,6 @@
 ```js
 
-// =====================================================
-// PROJETO: SISTEMA DE ADOÇÃO DE CACHORROS
-// Banco de dados: adocao_cachorros
-// Executar com: mongosh --file projeto_mongodb.js
-// =====================================================
-
-// Seleciona o banco de dados do projeto.
-// Se ele ainda não existir, o MongoDB irá criá-lo.
-db = db.getSiblingDB("adocao_cachorros");
-
-// =====================================================
 // 1. INSERÇÃO DOS ABRIGOS
-// insertOne() insere um documento por vez.
-// =====================================================
-
 db.abrigos.insertOne({
     _id: "6afeec5f23bffbb558f3c912",
     nome: "abrigo esperança",
@@ -142,10 +128,7 @@ db.abrigos.insertOne({
 });
 
 
-// =====================================================
 // 2. INSERÇÃO DOS ADOTANTES
-// =====================================================
-
 db.adotantes.insertOne({
     _id: "6aff475182b5831a8ee98b4d",
     nome: "Ana Oliveira",
@@ -227,10 +210,7 @@ db.adotantes.insertOne({
 });
 
 
-// =====================================================
 // 3. INSERÇÃO DOS CACHORROS
-// =====================================================
-
 db.cachorros.insertOne({
     _id: "6aff3fba0169827396dcce7e",
     nome: "Thor",
@@ -352,10 +332,7 @@ db.cachorros.insertOne({
 });
 
 
-// =====================================================
 // 4. INSERÇÃO DAS ADOÇÕES
-// =====================================================
-
 db.adocoes.insertOne({
     _id: "6aff4d7dc356a6fbd34ae386",
     status: "Concluída",
@@ -447,176 +424,119 @@ db.adocoes.insertOne({
 });
 
 
-// =====================================================
 // 5. 10 PROCEDIMENTOS DE ALTERAÇÃO
-// updateOne() altera um documento que corresponda ao filtro.
-// $set modifica o valor de um campo específico.
-// =====================================================
 
-// 1. Altera a cor do cachorro Thor.
 db.cachorros.updateOne(
     { nome: "Thor" },
     { $set: { cor: "Preta" } }
 );
 
-// 2. Altera a cor da cachorra Mel.
 db.cachorros.updateOne(
     { nome: "Mel" },
     { $set: { cor: "Branca e bege" } }
 );
 
-// 3. Altera a cor do cachorro Rex.
 db.cachorros.updateOne(
     { nome: "Rex" },
     { $set: { cor: "Caramelo" } }
 );
 
-// 4. Altera a cor da cachorra Nina.
 db.cachorros.updateOne(
     { nome: "Nina" },
     { $set: { cor: "Branca" } }
 );
 
-// 5. Altera a cor do cachorro Max.
 db.cachorros.updateOne(
     { nome: "Max" },
     { $set: { cor: "Marrom e branca" } }
 );
 
-// 6. Altera a cor da cachorra Amora.
 db.cachorros.updateOne(
     { nome: "Amora" },
     { $set: { cor: "Caramelo e branca" } }
 );
 
-// 7. Altera a cor do cachorro Bob.
 db.cachorros.updateOne(
     { nome: "Bob" },
     { $set: { cor: "Dourada e branca" } }
 );
 
-// 8. Altera a cor da cachorra Luna.
 db.cachorros.updateOne(
     { nome: "Luna" },
     { $set: { cor: "Preta e branca" } }
 );
 
-// 9. Altera a cor do cachorro Fred.
 db.cachorros.updateOne(
     { nome: "Fred" },
     { $set: { cor: "Marrom e preto" } }
 );
 
-// 10. Altera a cor da cachorra Belinha.
 db.cachorros.updateOne(
     { nome: "Belinha" },
     { $set: { cor: "Cinza" } }
 );
 
 
-// =====================================================
 // 10 PROCEDIMENTOS DE EXCLUSÃO
-// deleteOne() exclui um documento por vez.
-// deleteMany() exclui todos os documentos encontrados.
-// =====================================================
-
-// 1. Exclui o cachorro Thor.
 db.cachorros.deleteOne({ nome: "Thor" });
 
-// 2. Exclui a cachorra Mel.
 db.cachorros.deleteOne({ nome: "Mel" });
 
-// 3. Exclui o cachorro Rex.
 db.cachorros.deleteOne({ nome: "Rex" });
 
-// 4. Exclui a cachorra Nina.
 db.cachorros.deleteOne({ nome: "Nina" });
 
-// 5. Exclui o cachorro Max.
 db.cachorros.deleteOne({ nome: "Max" });
 
-// 6. Exclui todos os cachorros de porte pequeno.
 db.cachorros.deleteMany({ porte: "Pequeno" });
 
-// 7. Exclui todos os cachorros da raça Vira-lata.
 db.cachorros.deleteMany({ raca: "Vira-lata" });
 
-// 8. Exclui todos os cachorros do sexo masculino.
 db.cachorros.deleteMany({ sexo: "Macho" });
 
-// 9. Exclui todos os cachorros com 1 ano de idade.
 db.cachorros.deleteMany({ idade: 1 });
 
-// 10. Exclui todos os cachorros com situação "Adotado".
 db.cachorros.deleteMany({ situacao: "Adotado" });
-//=====================================================
 // 7. 10 CONSULTAS DE FILTRAGEM
-// find() procura documentos que correspondem ao filtro.
-// limit() limita a quantidade de resultados exibidos.
-// =====================================================
 
-// 1. Busca todos os cachorros do sexo masculino.
 db.cachorros.find({ sexo: "Macho" });
 
-// 2. Busca todos os cachorros do sexo feminino.
 db.cachorros.find({ sexo: "Fêmea" });
 
-// 3. Busca cachorros de porte pequeno.
 db.cachorros.find({ porte: "Pequeno" });
 
-// 4. Busca cachorros de porte grande.
 db.cachorros.find({ porte: "Grande" });
 
-// 5. Busca cachorros da raça Vira-lata.
 db.cachorros.find({ raca: "Vira-lata" });
 
-// 6. Busca cachorros que tenham 1 ano de idade.
 db.cachorros.find({ idade: 1 });
 
-// 7. Busca cachorros que tenham 3 anos ou mais.
 db.cachorros.find({ idade: { $gte: 3 } });
 
-// 8. Busca cachorros que tenham sido adotados.
 db.cachorros.find({ situacao: "Adotado" });
 
-// 9. Busca somente os dois primeiros cachorros encontrados.
 db.cachorros.find().limit(2);
 
-// 10. Busca cachorros de porte pequeno e exibe no máximo 3 resultados.
 db.cachorros.find({ porte: "Pequeno" }).limit(3);
 
 
-// =====================================================
 // 8. CONSULTAS COM LIMIT E ORDENAÇÃO
-// sort() organiza os resultados.
-// 1 = ordem crescente; -1 = ordem decrescente.
-// =====================================================
 
-// Exibe no máximo 5 cachorros.
 db.cachorros.find().limit(5);
 
-// Exibe os 3 cachorros mais novos primeiro.
 db.cachorros.find().sort({ idade: 1 }).limit(3);
 
-// Exibe os 3 cachorros mais velhos primeiro.
 db.cachorros.find().sort({ idade: -1 }).limit(3);
 
 
-// =====================================================
 // 9. VISUALIZAÇÃO DOS DADOS
-// pretty() organiza a exibição dos documentos.
-// =====================================================
 
-print("===== ABRIGOS =====");
 db.abrigos.find().pretty();
 
-print("===== ADOTANTES =====");
 db.adotantes.find().pretty();
 
-print("===== CACHORROS =====");
 db.cachorros.find().pretty();
 
-print("===== ADOÇÕES =====");
 db.adocoes.find().pretty();
 
 ```
